@@ -21,10 +21,7 @@ module.exports = (sequelize, DataTypes) =>{
         },
         description:{
             type: DataTypes.TEXT('LONG'),
-        },
-        // feedback:{
-
-        // }
+        }
     })
     return Coach;
 }

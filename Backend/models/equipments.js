@@ -11,13 +11,9 @@ module.exports = (sequelize, DataTypes) =>{
             allowNull: false,
             type: DataTypes.STRING(500),
         },
-        // equipmentType: {
-        //     allowNull: false,
-        //     type: DataTypes.STRING(500),
-        // },
-        equipmentStatus: {
-            type: sequelize.BOOLEAN,
-            defaultValue: false
+        toBuy: {
+            type: DataTypes.BOOLEAN,
+            default: false
         },
         address: {
             type: DataTypes.TEXT('long'),

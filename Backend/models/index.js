@@ -40,9 +40,38 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
-// ASSOCIATIONS - FOREIGN KEYS
-// Groups
-// db.Group.hasMany(db.Group_Member_Mapping, { foreignKey: "groupId" });
+// // ASSOCIATIONS - FOREIGN KEYS
+// // Groups
+// // db.Group.hasMany(db.Group_Member_Mapping, { foreignKey: "groupId" });
+// db.Group.hasMany(db.Notice, { foreignKey: "groupId" });
+// db.Group.hasMany(db.Event, { foreignKey: "groupId" });
+// db.Group.hasMany(db.Group_Link, { foreignKey: 'groupId'});
+// db.Group.hasMany(db.Blog, { foreignKey: "groupId" });
+// db.Group.hasMany(db.Member, {foreignKey: "groupId"});
+// db.Group.hasMany(db.Gallery, { foreignKey: "groupId" });
+
+
+// //Group_Link
+// db.Group_Link.belongsTo(db.Group, { foreignKey: 'groupId'});
+
+// // Members
+// db.Member.belongsTo(db.Group, { foreignKey: "groupId" });
+
+// //Notices
+// db.Notice.belongsTo(db.Group, { foreignKey: "groupId" });
+
+// //Events
+// db.Event.belongsTo(db.Group, { foreignKey: "groupId" });
+
+// //Blogs
+// db.Blog.belongsTo(db.Group, { foreignKey: "groupId" });
+
+// //Gallery
+// db.Gallery.belongsTo(db.Group, { foreignKey: "groupId" });
+// db.Gallery.hasMany(db.GalleryContent, { foreignKey: "galleryId" });
+
+// //GalleryContent
+// db.GalleryContent.belongsTo(db.Gallery, { foreignKey: "galleryId" });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
