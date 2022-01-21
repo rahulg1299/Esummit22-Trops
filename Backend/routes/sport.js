@@ -7,50 +7,47 @@ const  {verifySignUp}  = require("../middleware");
 const controller = require("../controller/auth.controller");
 
 
-router.get('/:user_id',(req,res) =>{
+router.get('/:sport_id',(req,res) =>{
     
-    db.User.findOne({where : {id: req.params.user_id}})
-    .then(user =>{ res.send(user)})
+    db.Sport.findOne({where : {id: req.params.sport_id}})
+    .then(sport =>{ res.send(sport)})
     .catch(err => console.log(err));
     
 })
 
 router.get('/', (req,res) =>{
-    db.User.findAll({
+    db.Sport.findAll({
         // where: {
         //     name: {[Op.not]: 'Cultural Council'}
         // }
     })
-    .then(users => res.send(users))
+    .then(sports => res.send(sports))
     .catch(err => console.log(err));
 })
 
-router.post('/' ,[ verifySignUp.checkDuplicateUser ], controller.signup )
 
-router.delete('/:user_id', [authJwt.verifyToken], (req, res) =>{
-    db.User.destroy({
+router.delete('/:sport_id', [authJwt.verifyToken], (req, res) =>{
+    db.Sport.destroy({
         where:{
-            id: req.params.user_id,
+            id: req.params.sport_id,
         }
     })
     .then(() => res.send("deleted"))
     .catch(err => console.log(err));
 })
 
-router.put('/:user_id', [authJwt.verifyToken], (req,res) =>{
+router.put('/:sport_id', [authJwt.verifyToken], (req,res) =>{
 
-    db.User.update({
+    db.Sport.update({
         name: req.body.name,
-        email: req.body.email,
-        contact: req.body.contact
         },
         {
             where:{
-                id: req.params.user_id
+                id: req.params.sport_id
             }
         }
     )
-    .then(user => res.send(user))
+    .then(sport => res.send(sport))
     .catch(err => console.log(err));
 })
 
