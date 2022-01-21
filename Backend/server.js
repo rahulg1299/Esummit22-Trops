@@ -28,6 +28,8 @@ app.use(function(req, res, next) {
     next();
 });
 
+const userRouter = require('./routes/user')
+app.use('/api/user',userRouter)
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () =>{

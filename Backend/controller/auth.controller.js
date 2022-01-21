@@ -1,6 +1,6 @@
 const db = require("../models");
 const config = require("../config/auth.config");
-// const Group = db.Group;
+const User = db.User;
 // const Role = db.role;
 
 const Op = db.Sequelize.Op;
@@ -16,6 +16,7 @@ exports.signup = (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 8),
+        contact: req.body.contact
     })
     .then(user => {
       res.send({ message: "User was registered successfully!" });
