@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) =>{
-    const Sport = sequelize.define("Sport", {
+    const LocationSlot = sequelize.define("LocationSlot", {
         id: {
             allowNull: false,
             autoIncrement: true,
@@ -7,10 +7,14 @@ module.exports = (sequelize, DataTypes) =>{
             unique: true,
             type: DataTypes.INTEGER
         },
-        name: {
+        slot: {
             // allowNull: false,
-            type: DataTypes.STRING(500),
-        }
+            type: DataTypes.DATE,
+        },
+        status: {
+            type: DataTypes.STRING,
+        },
     })
-    return Sport;
+
+    return LocationSlot;
 }
