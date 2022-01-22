@@ -51,4 +51,14 @@ router.put('/:sport_id', [authJwt.verifyToken], (req,res) =>{
     .catch(err => console.log(err));
 })
 
+router.post('/:sport_id', [authJwt.verifyToken], (req,res) =>{
+
+    db.Sport.create({
+        name: req.body.name,
+        }
+    )
+    .then(sport => res.send(sport))
+    .catch(err => console.log(err));
+})
+
 module.exports = router;
