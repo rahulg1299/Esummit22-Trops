@@ -1,6 +1,8 @@
-import '/main_screens/home_screen.dart';
-import 'main_screens/equipment_screen.dart';
-import 'main_screens/home_screen.dart';
+import 'package:esummit_sports/screens/secondary_screens/all_equipment_screen.dart';
+
+import 'screens/main_screens/home_screen.dart';
+import 'screens/main_screens/equipment_screen.dart';
+import 'screens/main_screens/home_screen.dart';
 import '/universal_variables.dart';
 import 'package:flutter/material.dart';
 
@@ -56,6 +58,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     MaterialPageRoute(builder: (context) => EquipmentScreen()));
               },
               child: const Text('equipment screen'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AllEquipmentsScreen()));
+              },
+              child: const Text('all equipment screen'),
             ),
           ],
         ),

@@ -1,4 +1,8 @@
 import 'dart:ui';
+import 'package:esummit_sports/data_models/equipment_model.dart';
+import 'package:esummit_sports/screens/secondary_screens/all_equipment_screen.dart';
+import 'package:esummit_sports/screens/secondary_screens/filter_screen.dart';
+import 'package:esummit_sports/visual_components/product_tile.dart';
 import 'package:esummit_sports/visual_components/small_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
@@ -21,6 +25,16 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    EquipmentModel dummy = EquipmentModel(
+      id: 1,
+      name: 'Ball',
+      cost: 150,
+      address: 'roorkee',
+      coverImg: 'https://pngimg.com/uploads/cricket/cricket_PNG85.png',
+      description: 'big balll',
+      toBuy: true,
+    );
+
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Container(
@@ -57,7 +71,7 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
                                 Text(
                                   'Roorkee',
                                   style: montserrat(
-                                    fontSize: fontSize(size: 'mediumSmall'),
+                                    fontSize: fontSize(size: 'smallMedium'),
                                     color: grey,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -124,10 +138,15 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
                           ],
                         ),
                       ),
-                      Icon(
-                        LineIcons.filter,
-                        size: 30,
-                        color: grey,
+                      GestureDetector(
+                        onTap: () async {
+                          await bottomPopUpFilter(context);
+                        },
+                        child: Icon(
+                          LineIcons.filter,
+                          size: 30,
+                          color: grey,
+                        ),
                       ),
                     ],
                   ),
@@ -248,7 +267,14 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AllEquipmentsScreen(),
+                            ),
+                          );
+                        },
                         child: Text(
                           'View All',
                           style: montserrat(
@@ -266,8 +292,64 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
                 ),
                 Container(
                   width: width,
-                  height: width * 0.5,
-                  color: Colors.red,
+                  height: width * 0.7,
+                  child: ScrollConfiguration(
+                    behavior: MyScrollBehavior(),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: width * 0.045,
+                            ),
+                          ),
+                          productTile(
+                              data: dummy, network: false, isSmall: false),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              left: 10,
+                            ),
+                          ),
+                          productTile(
+                              data: dummy, network: true, isSmall: false),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              left: 10,
+                            ),
+                          ),
+                          productTile(
+                              data: dummy, network: true, isSmall: false),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              left: 10,
+                            ),
+                          ),
+                          productTile(
+                              data: dummy, network: false, isSmall: false),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              left: 10,
+                            ),
+                          ),
+                          productTile(
+                              data: dummy, network: true, isSmall: false),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              left: 10,
+                            ),
+                          ),
+                          productTile(
+                              data: dummy, network: true, isSmall: false),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: width * 0.045,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
                 Container(
                   width: width,
@@ -287,7 +369,14 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AllEquipmentsScreen(),
+                            ),
+                          );
+                        },
                         child: Text(
                           'View All',
                           style: montserrat(
@@ -305,8 +394,67 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
                 ),
                 Container(
                   width: width,
-                  height: width * 0.5,
-                  color: Colors.red,
+                  height: width * 0.7,
+                  child: ScrollConfiguration(
+                    behavior: MyScrollBehavior(),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: width * 0.045,
+                            ),
+                          ),
+                          productTile(
+                              data: dummy, network: false, isSmall: false),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              left: 10,
+                            ),
+                          ),
+                          productTile(
+                              data: dummy, network: true, isSmall: false),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              left: 10,
+                            ),
+                          ),
+                          productTile(
+                              data: dummy, network: true, isSmall: false),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              left: 10,
+                            ),
+                          ),
+                          productTile(
+                              data: dummy, network: false, isSmall: false),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              left: 10,
+                            ),
+                          ),
+                          productTile(
+                              data: dummy, network: true, isSmall: false),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              left: 10,
+                            ),
+                          ),
+                          productTile(
+                              data: dummy, network: true, isSmall: false),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: width * 0.045,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(15),
                 ),
               ],
             ),

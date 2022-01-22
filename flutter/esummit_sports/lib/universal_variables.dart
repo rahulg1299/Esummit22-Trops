@@ -6,6 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 Color orange = const Color.fromRGBO(0xc6, 0x6b, 0x3d, 1);
 Color grey = const Color.fromRGBO(0x8c, 0x8c, 0x8c, 1);
 Color blue = const Color.fromRGBO(0x26, 0x49, 0x5c, 1);
+Color blueGrey = const Color.fromRGBO(0x87, 0x99, 0x9d, 1);
+Color darkGrey = const Color.fromRGBO(0x68, 0x68, 0x68, 1);
+Color lightGrey = const Color.fromRGBO(0xba, 0xba, 0xba, 1);
 
 Color backgroundColor = const Color.fromRGBO(0xe5, 0xe5, 0xdc, 1);
 
@@ -51,6 +54,8 @@ double fontSize({String size = 'medium'}) {
     case 'medium':
       return width / 17;
     case 'mediumSmall':
+      return width / 21;
+    case 'smallMedium':
       return width / 25;
     case 'small':
       return width / 23;
@@ -64,6 +69,45 @@ double fontSize({String size = 'medium'}) {
       return width / 17;
   }
 }
+
+List<List<String>> filters = [
+  [
+    'cricket',
+    'hockey',
+    'baseball',
+    'football',
+    'snooker',
+    'basketball',
+    'squash',
+    'tennis',
+    'chess',
+  ],
+  [
+    'equipment1',
+    'equipment2',
+    'equipment3',
+  ],
+  [
+    'under ₹500',
+    '₹500 to ₹2000',
+    '₹2000 to ₹5000',
+    '₹5000 to ₹10000',
+    'over ₹10000',
+  ],
+  [
+    'reebok',
+    'adidas',
+    'puma',
+    'nivia',
+    'yonex',
+    'nike',
+    'SG',
+  ],
+  [
+    'men',
+    'women',
+  ],
+];
 
 String date(DateTime? dates) {
   String res = dates?.day.toString() ?? 'date';
