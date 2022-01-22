@@ -16,11 +16,17 @@ router.get('/:coach_id',(req,res) =>{
 })
 
 router.get('/', (req,res) =>{
-    db.Coach.findAll({
-        // where: {
-        //     name: {[Op.not]: 'Cultural Council'}
-        // }
-    })
+
+    const query = { }
+
+    if(req.query.address != undefined)
+        query.where.address = req.query.address
+    
+    
+    if(req.query.sportId != undefined)
+        query.where.sportId = parseInt(req.query.sportId);
+
+    db.Coach.findAll(query)
     .then(coaches => res.send(coaches))
     .catch(err => console.log(err));
 })

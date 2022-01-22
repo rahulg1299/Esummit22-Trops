@@ -5,6 +5,7 @@ const { Op } = require("sequelize");
 const  {authJwt}  = require("../middleware");
 const  {verifySignUp}  = require("../middleware");
 const controller = require("../controller/auth.controller");
+const { query } = require('express');
 
 
 router.get('/:institute_id',(req,res) =>{
@@ -16,12 +17,37 @@ router.get('/:institute_id',(req,res) =>{
 })
 
 router.get('/', (req,res) =>{
-    db.Institute.findAll({
-        // where: {
-        //     name: {[Op.not]: 'Cultural Council'}
-        // }
+
+    let query = {};
+    if(req.query.address != undefined)
+        query.where.address = req.query.address
+    
+    
+    if(req.query.sportId != undefined)
+        query.where.sportId = parseInt(req.query.sportId);
+
+        
+    db.Institute.findAll(query).then(instis => {
+
+        let data = instis;
+        let instiIds = data.map((e) => {
+            return e.id;
+        })
+
+        if(req.query.sportId != undefined){
+            Promise.all([
+                db.InstituteSportMapping.findAll({ where : {id : {[Op.in] : instiIds} , sportId : req.query.sportId} , attributes: ['instituteId'] })
+            ]).then(val => {
+                data = data.filter((e) => {
+                    return val[0].find(e.id) === true
+                })
+                res.send(data);
+            })
+        }
+        else{
+            res.send(data);
+        }
     })
-    .then(institutes => res.send(institutes))
     .catch(err => console.log(err));
 })
 
