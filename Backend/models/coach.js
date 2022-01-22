@@ -22,9 +22,9 @@ module.exports = (sequelize, DataTypes) =>{
         description:{
             type: DataTypes.TEXT('LONG'),
         },
-        // feedback:{
-
-        // }
+        sportId: {
+            type: DataTypes.INTEGER
+        }
     })
     return Coach;
 }

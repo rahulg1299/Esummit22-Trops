@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) =>{
-    const LocationPhotos = sequelize.define("LocationPhotos", {
+    const LocationPhoto = sequelize.define("LocationPhoto", {
         id: {
             allowNull: false,
             autoIncrement: true,
@@ -11,5 +11,5 @@ module.exports = (sequelize, DataTypes) =>{
             type: DataTypes.STRING(1000),
         }
     })
-    return LocationPhotos;
+    return LocationPhoto;
 }
