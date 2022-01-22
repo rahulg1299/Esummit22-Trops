@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) =>{
         },
         description:{
             type: DataTypes.TEXT('LONG'),
+        },
+        sportId: {
+            type: DataTypes.INTEGER
         }
     })
     return Coach;

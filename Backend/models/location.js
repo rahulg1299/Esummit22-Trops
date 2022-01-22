@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) =>{
-    const LocationOwner = sequelize.define("LocationOwner", {
+    const Location = sequelize.define("Location", {
         id: {
             allowNull: false,
             autoIncrement: true,
@@ -20,7 +20,10 @@ module.exports = (sequelize, DataTypes) =>{
         contact: {
             type: DataTypes.STRING,
         },
+        coverImg:{
+            type: DataTypes.STRING
+        }
     })
 
-    return LocationOwner;
+    return Location;
 }
