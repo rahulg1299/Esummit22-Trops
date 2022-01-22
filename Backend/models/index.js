@@ -68,6 +68,7 @@ db.Sport.hasMany(db.LocationSportMapping, {foreignKey : 'sportId'})
 
 db.Coach.belongsTo(db.Sport, {foreignKey : 'sportId'})
 
+db.User.hasMany(db.LocationSlot, {foreignKey : 'userId'})
 
 
 db.Institute.hasMany(db.InstitutePhoto, {foreignKey: 'instituteId'})
@@ -84,15 +85,14 @@ db.InstitutePhoto.belongsTo(db.Institute, {foreignKey: 'instituteId'})
 db.InstituteFeedback.belongsTo(db.Institute, {foreignKey : 'instituteId'})
 
 db.Location.hasMany(db.LocationPhoto, {foreignKey: 'locationId'})
-db.Location.hasMany(db.LocationBooking, {foreignKey: 'locationId'})
 db.Location.hasMany(db.LocationSlot, {foreignKey : 'locationId'})
 db.Location.hasMany(db.LocationSportMapping , {foreignKey : 'locationId'})
 
 db.LocationPhoto.belongsTo(db.Location , {foreignKey : 'locationId'})
 
 db.LocationSlot.belongsTo(db.Location, {foreignKey : 'locationId'})
+db.LocationSlot.belongsTo(db.User, {foreignKey : 'userId'})
 
-db.LocationBooking.belongsTo(db.Location, {foreignKey: 'locationId'})
 
 db.LocationSportMapping.belongsTo(db.Location, {foreignKey : 'locationId'})
 db.LocationSportMapping.belongsTo(db.Sport, {foreignKey : 'sportId'})
