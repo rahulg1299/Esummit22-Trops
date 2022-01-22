@@ -6,7 +6,7 @@ const  {authJwt}  = require("../middleware");
 const  {verifySignUp}  = require("../middleware");
 const controller = require("../controller/auth.controller");
 
-
+// get single equipment
 router.get('/:equipment_id',(req,res) =>{
     const data = {}
 
@@ -15,46 +15,44 @@ router.get('/:equipment_id',(req,res) =>{
         db.EquipmentPhotos.findAll({where :{equipmentId: req.params.equipment_id}}),
     ]).then(value => {
         data.equipment = value[0];
-        data.equipment_img = value[1];
+        data.equipmentImages = value[1];
         res.send(data);
     }).catch(err => console.log(err));
 })
 
+// get equipments
 router.get('/', (req,res) =>{
-    const data ={}
     
-    Promise.all([
-        db.EquipmentType.findAll(),
-        db.Equipment.findAll(),
-    ]).then(value => {
-        data.AllequipmentType = value[0];
-        data.equipments = value[1];
-        data.sell = value[1].map((e)=>{
-            return e.toBuy === 1
-        });
- 
-        data.Buy = value[1].map((e)=>{
-         return e.toBuy === 0
-        });
- 
-        data.display = value[0].slice(0,5);
+    const query = {
+        where : {
+            toBuy : false,
+        }
+    }
+    if(req.query.equipmentTypeId != undefined)
+        query.where.equipmentTypeId = req.query.equipmentTypeId
+    
+    
+    if(req.query.sportId != undefined)
+        query.where.sportId = req.query.sportId
 
-        res.send(data);
+    if(req.query.toBuy === true)
+        query.where.toBuy = true
+
+    
+    
+    if(req.query.limit != undefined)
+        query.limit = parseInt(req.query.limit);
+    
+    if(req.query.offset != undefined)
+        query.offset = parseInt(req.query.offset);
+
+
+    Promise.all([
+        db.Equipment.findAll(query),
+    ]).then(value => {
+        res.send(value);
     }).catch(err => console.log(err));
 })
-
-router.get('/:equipmentType_id', (req,res) =>{
-    const res ={}
-    Promise.all([
-        db.EquipmentType.findOne({where:{ id : req.params.equipmentType_id}}),
-        db.Equipment.findAll({where : {equipmentTypeId: req.params.equipment_id}}),
-    ]).then(value => {
-        data.equipmentType = value[0];
-        data.equipments = value[1];
-        res.send(data);
-    }).catch(err => console.log(err));
-})
-
 
 
 router.delete('/:equipment_id', [authJwt.verifyToken], (req, res) =>{
@@ -71,14 +69,14 @@ router.put('/:equipment_id', [authJwt.verifyToken], (req,res) =>{
 
     db.Equipment.update({
         name: req.body.name,
-        toBuy: req.body.name,
+        toBuy: req.body.toBuy,
         address: req.body.address,
         description: req.body.description,
         cost :req.body.cost,
         },
         {
             where:{
-                id: req.params.sport_id
+                id: req.params.equipment_id
             }
         }
     )
