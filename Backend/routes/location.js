@@ -23,7 +23,6 @@ router.get('/:location_id',(req,res) =>{
 })
 
 
-
 // get all locations
 router.get('/', (req,res) =>{
 
@@ -75,6 +74,7 @@ router.delete('/:location_id', [authJwt.verifyToken], (req, res) =>{
     .catch(err => console.log(err));
 })
 
+
 router.put('/:location_id', [authJwt.verifyToken], (req,res) =>{
 
     db.Location.update({
@@ -84,6 +84,16 @@ router.put('/:location_id', [authJwt.verifyToken], (req,res) =>{
             where:{
                 id: req.params.location_id
             }
+        }
+    )
+    .then(location => res.send(location))
+    .catch(err => console.log(err));
+})
+
+router.post('/', [authJwt.verifyToken], (req,res) =>{
+
+    db.Location.create({
+        // name: req.body.name,
         }
     )
     .then(location => res.send(location))

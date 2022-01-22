@@ -24,6 +24,9 @@ module.exports = (sequelize, DataTypes) =>{
         cost :{
             allowNull: false,
             type : DataTypes.INTEGER
+        },
+        coverImg:{
+            type: DataTypes.TEXT('long')
         }
 
 

@@ -60,15 +60,14 @@ router.put('/:coach_id', [authJwt.verifyToken], (req,res) =>{
     .catch(err => console.log(err));
 })
 
-router.post('/:coach_id', [authJwt.verifyToken], (req,res) =>{
+router.post('/', [authJwt.verifyToken], (req,res) =>{
 
     db.Coach.create({
         name: req.body.name,
         contact: req.body.contact,
         address: req.body.address,
         description: req.body.description,
-        }
-    )
+    })
     .then(coach => res.send(coach))
     .catch(err => console.log(err));
 })

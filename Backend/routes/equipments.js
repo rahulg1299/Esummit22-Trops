@@ -73,11 +73,27 @@ router.put('/:equipment_id', [authJwt.verifyToken], (req,res) =>{
         address: req.body.address,
         description: req.body.description,
         cost :req.body.cost,
+        coverImg: req.body.coverImg
         },
         {
             where:{
                 id: req.params.equipment_id
             }
+        }
+    )
+    .then(eqp => res.send(eqp))
+    .catch(err => console.log(err));
+})
+
+router.post('/', [authJwt.verifyToken], (req,res) =>{
+
+    db.Equipment.create({
+        name: req.body.name,
+        toBuy: req.body.toBuy,
+        address: req.body.address,
+        description: req.body.description,
+        cost :req.body.cost,
+        coverImg: req.body.coverImg
         }
     )
     .then(eqp => res.send(eqp))

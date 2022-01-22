@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) =>{
             allowNull: false,
             type: DataTypes.STRING(500),
         },
+        coverImg: {
+            type: DataTypes.TEXT('long')
+        }
     })
     return EquipmentType;
 }

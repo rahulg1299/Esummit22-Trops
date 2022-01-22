@@ -51,5 +51,18 @@ router.delete('/:slot_id', [authJwt.verifyToken] ,(req,res) =>{
 
 })
 
+//create slot
+router.post('/', [authJwt.verifyToken] ,(req,res) =>{
+
+    db.LocationSlot.create({
+        status: "AVAILABLE",
+        slot: req.body.slot,
+        locationId: req.body.locationId
+    })
+    .then(slot => res.send(slot))
+    .catch(err => console.log(err));
+
+})
+
 
 module.exports = router;
