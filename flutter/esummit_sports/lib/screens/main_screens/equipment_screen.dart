@@ -17,10 +17,28 @@ class EquipmentScreen extends StatefulWidget {
 class _EquipmentScreenState extends State<EquipmentScreen> {
   late PageController pageController;
 
+  int page = 0;
+
+  void screenChange() {
+    if (pageController.page!.toInt() == pageController.page) {
+      setState(() {
+        page = pageController.page!.toInt();
+      });
+      print(page);
+    }
+  }
+
   @override
   void initState() {
-    pageController = PageController(initialPage: 1);
+    pageController = PageController(initialPage: 0);
+    pageController.addListener(screenChange);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    pageController.removeListener(screenChange);
+    super.dispose();
   }
 
   @override
@@ -155,97 +173,165 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
                 Container(
                   width: width,
                   height: width * 0.5,
-                  child: PageView(
-                    controller: pageController,
+                  child: Stack(
                     children: [
-                      GestureDetector(
-                        onTap: () => print('tapped'),
-                        child: Container(
-                          width: width * 0.9,
-                          height: width * 0.45,
-                          decoration: BoxDecoration(
-                            // borderRadius: BorderRadius.circular(15),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
-                                blurRadius: 20,
-                                spreadRadius: 5,
-                                offset: const Offset(10, 10),
-                              )
-                            ],
-                            image: const DecorationImage(
-                              image: AssetImage('assets/images/coaching.png'),
+                      PageView(
+                        controller: pageController,
+                        children: [
+                          GestureDetector(
+                            onTap: () => print('tapped'),
+                            child: Container(
+                              width: width * 0.9,
+                              height: width * 0.45,
+                              decoration: BoxDecoration(
+                                // borderRadius: BorderRadius.circular(15),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.1),
+                                    blurRadius: 20,
+                                    spreadRadius: 5,
+                                    offset: const Offset(10, 10),
+                                  )
+                                ],
+                                image: const DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/coaching.png'),
+                                ),
+                              ),
+                              alignment: Alignment.bottomRight,
                             ),
                           ),
-                          alignment: Alignment.bottomRight,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () => print('tapped'),
-                        child: Container(
-                          width: width * 0.9,
-                          height: width * 0.45,
-                          decoration: BoxDecoration(
-                            // borderRadius: BorderRadius.circular(15),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
-                                blurRadius: 20,
-                                spreadRadius: 5,
-                                offset: const Offset(10, 10),
-                              )
-                            ],
-                            image: const DecorationImage(
-                              image: AssetImage('assets/images/equipment.png'),
+                          GestureDetector(
+                            onTap: () => print('tapped'),
+                            child: Container(
+                              width: width * 0.9,
+                              height: width * 0.45,
+                              decoration: BoxDecoration(
+                                // borderRadius: BorderRadius.circular(15),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.1),
+                                    blurRadius: 20,
+                                    spreadRadius: 5,
+                                    offset: const Offset(10, 10),
+                                  )
+                                ],
+                                image: const DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/equipment.png'),
+                                ),
+                              ),
+                              alignment: Alignment.bottomRight,
                             ),
                           ),
-                          alignment: Alignment.bottomRight,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () => print('tapped'),
-                        child: Container(
-                          width: width * 0.9,
-                          height: width * 0.45,
-                          decoration: BoxDecoration(
-                            // borderRadius: BorderRadius.circular(15),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
-                                blurRadius: 20,
-                                spreadRadius: 5,
-                                offset: const Offset(10, 10),
-                              )
-                            ],
-                            image: const DecorationImage(
-                              image: AssetImage('assets/images/location.png'),
+                          GestureDetector(
+                            onTap: () => print('tapped'),
+                            child: Container(
+                              width: width * 0.9,
+                              height: width * 0.45,
+                              decoration: BoxDecoration(
+                                // borderRadius: BorderRadius.circular(15),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.1),
+                                    blurRadius: 20,
+                                    spreadRadius: 5,
+                                    offset: const Offset(10, 10),
+                                  )
+                                ],
+                                image: const DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/location.png'),
+                                ),
+                              ),
+                              alignment: Alignment.bottomRight,
                             ),
                           ),
-                          alignment: Alignment.bottomRight,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () => print('tapped'),
-                        child: Container(
-                          width: width * 0.9,
-                          height: width * 0.45,
-                          decoration: BoxDecoration(
-                            // borderRadius: BorderRadius.circular(15),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
-                                blurRadius: 20,
-                                spreadRadius: 5,
-                                offset: const Offset(10, 10),
-                              )
-                            ],
-                            image: const DecorationImage(
-                              image: AssetImage('assets/images/community.png'),
+                          GestureDetector(
+                            onTap: () => print('tapped'),
+                            child: Container(
+                              width: width * 0.9,
+                              height: width * 0.45,
+                              decoration: BoxDecoration(
+                                // borderRadius: BorderRadius.circular(15),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.1),
+                                    blurRadius: 20,
+                                    spreadRadius: 5,
+                                    offset: const Offset(10, 10),
+                                  )
+                                ],
+                                image: const DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/community.png'),
+                                ),
+                              ),
+                              alignment: Alignment.bottomRight,
                             ),
                           ),
-                          alignment: Alignment.bottomRight,
-                        ),
+                        ],
                       ),
+                      Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                              height: height * 0.02 + 10,
+                              width: width * 0.25,
+                              padding: EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: (page == 0)
+                                          ? backgroundColor
+                                          : Colors.transparent,
+                                      border: Border.all(
+                                          color: backgroundColor, width: 2),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: (page == 1)
+                                          ? backgroundColor
+                                          : Colors.transparent,
+                                      border: Border.all(
+                                          color: backgroundColor, width: 2),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: (page == 2)
+                                          ? backgroundColor
+                                          : Colors.transparent,
+                                      border: Border.all(
+                                          color: backgroundColor, width: 2),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: (page == 3)
+                                          ? backgroundColor
+                                          : Colors.transparent,
+                                      border: Border.all(
+                                          color: backgroundColor, width: 2),
+                                    ),
+                                  ),
+                                ],
+                              )))
                     ],
                   ),
                 ),
@@ -304,42 +390,42 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
                               left: width * 0.045,
                             ),
                           ),
-                          productTile(
+                          productTile(context,
                               data: dummy, network: false, isSmall: false),
                           const Padding(
                             padding: EdgeInsets.only(
                               left: 10,
                             ),
                           ),
-                          productTile(
+                          productTile(context,
                               data: dummy, network: true, isSmall: false),
                           const Padding(
                             padding: EdgeInsets.only(
                               left: 10,
                             ),
                           ),
-                          productTile(
+                          productTile(context,
                               data: dummy, network: true, isSmall: false),
                           const Padding(
                             padding: EdgeInsets.only(
                               left: 10,
                             ),
                           ),
-                          productTile(
+                          productTile(context,
                               data: dummy, network: false, isSmall: false),
                           const Padding(
                             padding: EdgeInsets.only(
                               left: 10,
                             ),
                           ),
-                          productTile(
+                          productTile(context,
                               data: dummy, network: true, isSmall: false),
                           const Padding(
                             padding: EdgeInsets.only(
                               left: 10,
                             ),
                           ),
-                          productTile(
+                          productTile(context,
                               data: dummy, network: true, isSmall: false),
                           Padding(
                             padding: EdgeInsets.only(
@@ -406,42 +492,42 @@ class _EquipmentScreenState extends State<EquipmentScreen> {
                               left: width * 0.045,
                             ),
                           ),
-                          productTile(
+                          productTile(context,
                               data: dummy, network: false, isSmall: false),
                           const Padding(
                             padding: EdgeInsets.only(
                               left: 10,
                             ),
                           ),
-                          productTile(
+                          productTile(context,
                               data: dummy, network: true, isSmall: false),
                           const Padding(
                             padding: EdgeInsets.only(
                               left: 10,
                             ),
                           ),
-                          productTile(
+                          productTile(context,
                               data: dummy, network: true, isSmall: false),
                           const Padding(
                             padding: EdgeInsets.only(
                               left: 10,
                             ),
                           ),
-                          productTile(
+                          productTile(context,
                               data: dummy, network: false, isSmall: false),
                           const Padding(
                             padding: EdgeInsets.only(
                               left: 10,
                             ),
                           ),
-                          productTile(
+                          productTile(context,
                               data: dummy, network: true, isSmall: false),
                           const Padding(
                             padding: EdgeInsets.only(
                               left: 10,
                             ),
                           ),
-                          productTile(
+                          productTile(context,
                               data: dummy, network: true, isSmall: false),
                           Padding(
                             padding: EdgeInsets.only(

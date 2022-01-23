@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:esummit_sports/screens/main_screens/equipment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -24,6 +25,38 @@ class _HomeScreenState extends State<HomeScreen> {
         isScrolled = false;
       });
     }
+  }
+
+  late OverlayEntry _overlayEntry;
+
+  void pushOverlay(Widget child) {
+    _overlayEntry = createOverlay(child);
+    Overlay.of(context)?.insert(_overlayEntry);
+  }
+
+  void popOverlay() {
+    _overlayEntry.remove();
+  }
+
+  OverlayEntry createOverlay(Widget child) {
+    RenderBox renderBox = context.findRenderObject() as RenderBox;
+    var size = renderBox.size;
+    var offset = renderBox.localToGlobal(Offset.zero);
+
+    return OverlayEntry(
+      builder: (context) => Stack(
+        children: [
+          GestureDetector(
+              onTap: popOverlay,
+              child: Container(
+                height: height,
+                width: width,
+                color: Colors.transparent,
+              )),
+          child,
+        ],
+      ),
+    );
   }
 
   @override
@@ -56,6 +89,56 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Padding(padding: EdgeInsets.all(height * 0.1)),
                           GestureDetector(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EquipmentScreen(),
+                              ),
+                            ),
+                            child: Container(
+                              width: width * 0.9,
+                              height: width * 0.45,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.1),
+                                    blurRadius: 20,
+                                    spreadRadius: 5,
+                                    offset: const Offset(10, 10),
+                                  )
+                                ],
+                                image: const DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/equipment.png'),
+                                ),
+                              ),
+                              alignment: Alignment.bottomRight,
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                child: Container(
+                                  width: width * 0.25,
+                                  height: height * 0.035,
+                                  alignment: Alignment.center,
+                                  padding: const EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.7),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: Text(
+                                    'Equipments',
+                                    textScaleFactor: 1,
+                                    style: montserrat(
+                                      color: Colors.grey[800],
+                                      fontSize: fontSize(size: 'extraSmall'),
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          /*GestureDetector(
                             onTap: () => print('tapped'),
                             child: Container(
                               width: width * 0.9,
@@ -107,29 +190,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Container(
                                       width: width * 0.9,
                                       height: width * 0.12,
-                                      // color: Colors.red,
-                                      child: ClipRRect(
+                                      decoration: BoxDecoration(
+                                        color: blue,
                                         borderRadius: const BorderRadius.only(
-                                          bottomLeft: Radius.circular(15),
-                                          bottomRight: Radius.circular(15),
-                                        ),
-                                        child: BackdropFilter(
-                                          filter: ImageFilter.blur(
-                                            sigmaX: 5,
-                                            sigmaY: 5,
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              'Equipments',
-                                              textScaleFactor: 1,
-                                              style: montserrat(
-                                                // color: Colors.grey[800],
-                                                color: Colors.white,
-                                                fontSize: fontSize(
-                                                    size: 'extraSmall'),
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
+                                            bottomLeft: Radius.circular(15),
+                                            bottomRight: Radius.circular(15)),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          'Equipments',
+                                          textScaleFactor: 1,
+                                          style: montserrat(
+                                            // color: Colors.grey[800],
+                                            color: backgroundColor,
+                                            fontSize:
+                                                fontSize(size: 'extraSmall'),
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
                                       ),
@@ -138,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               ),
                             ),
-                          ),
+                          ),*/
                           const Padding(padding: EdgeInsets.all(8)),
                           GestureDetector(
                             onTap: () => print('tapped'),
@@ -328,9 +404,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
+                              GestureDetector(
                                 // padding:
                                 // const EdgeInsets.symmetric(horizontal: 10),
+                                onTap: ,
                                 child: const Icon(
                                   LineIcons.listUl,
                                   size: 30,

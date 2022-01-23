@@ -1,12 +1,20 @@
 import 'package:esummit_sports/data_models/equipment_model.dart';
+import 'package:esummit_sports/screens/secondary_screens/equipment_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../universal_variables.dart';
 
-Widget productTile(
+Widget productTile(BuildContext context,
     {required EquipmentModel data, bool? network, required bool isSmall}) {
   return GestureDetector(
-    onTap: () => print('tapped'),
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EquipmentDetailScreen(),
+        ),
+      );
+    },
     child: Container(
       width: isSmall ? width * 0.44 : width * 0.5,
       height: isSmall ? width * 0.6 : width * 0.67,

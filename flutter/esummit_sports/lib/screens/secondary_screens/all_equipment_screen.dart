@@ -135,13 +135,8 @@ class _AllEquipmentsScreenState extends State<AllEquipmentsScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FilterPopUp(),
-                        ),
-                      );
+                    onTap: () async {
+                      await bottomPopUpFilter(context);
                     },
                     child: Icon(
                       LineIcons.filter,
@@ -181,7 +176,7 @@ class _AllEquipmentsScreenState extends State<AllEquipmentsScreen> {
                       spacing: 10,
                       children: [
                         for (int i = 0; i < 10; i++)
-                          productTile(
+                          productTile(context,
                               data: dummy, network: false, isSmall: true),
                         Container(
                           width: width,

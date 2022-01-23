@@ -3,7 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+typedef WidgetCallback = void Function(Widget);
+
 Color orange = const Color.fromRGBO(0xc6, 0x6b, 0x3d, 1);
+Color yellow = const Color.fromRGBO(0xff, 0xc1, 0x07, 1);
 Color grey = const Color.fromRGBO(0x8c, 0x8c, 0x8c, 1);
 Color blue = const Color.fromRGBO(0x26, 0x49, 0x5c, 1);
 Color blueGrey = const Color.fromRGBO(0x87, 0x99, 0x9d, 1);
