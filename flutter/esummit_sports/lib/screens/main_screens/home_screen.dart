@@ -407,7 +407,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               GestureDetector(
                                 // padding:
                                 // const EdgeInsets.symmetric(horizontal: 10),
-                                onTap: ,
+                                onTap: () {},
                                 child: const Icon(
                                   LineIcons.listUl,
                                   size: 30,
